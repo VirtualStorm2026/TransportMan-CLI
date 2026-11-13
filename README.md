@@ -5,14 +5,19 @@ A Simple, Python-based command line game about managing a public transport busin
 Transport Manager CLI (Name in progress) is a simple Python-based game where you manage your own public transport company. It's a pretty basic gane with basic features.
 
 # How do I install it?
-Get the latest stable release in the Releases page, or get a experimental development build too if you want to give it a shot to upcoming features.
-
 ## Dependencies
 To run the game, you will need these in order to play:
 
 - Python 3
 
-And you're ready to go.
+## Installation
+1. Download the latest stable version of the game corresponding to your operative system, or download a development release to try new features. Development release may have more glitches, bugs, and errors.
+
+2. Extract the .zip or .tar.gz file where you want. It is recommended to extract the game in its own folder.
+
+3. Run the game via executing `python3 transportman.py`. The command may vary depending on your system.
+
+4. Enjoy!
 
 # ⚠️ Experimental Stage
 The game it's in a very early development stage, like, in an incredibly early stage. Only things that are available are:
