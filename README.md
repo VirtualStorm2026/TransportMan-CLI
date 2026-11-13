@@ -30,10 +30,5 @@ The game is in purpose made of only one Python file to keep it simple and ready 
 
 Absolutely nothing of this project is made with AI. That's it. I wanted to add this just in case someone asks.
 
-# EULA
-It is strictly forbidden to copy this project without providing any form of credit to the original creator, and/or to profit from the game. Any copy intended to generate profit from the project is prohibited.
-
-Modifications are permitted, provided that no profit is made from them.
-
 # Credits
 VirtualStorm1001: Creator and developer
