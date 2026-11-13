@@ -8,7 +8,7 @@ Transport Manager CLI (Name in progress) is a simple Python-based game where you
 ## Dependencies
 To run the game, you will need these in order to play:
 
-- Python 3
+- Python 3 (preferably the latest version. You can get it from here: www.python.org)
 
 ## Installation
 1. Download the latest stable version of the game corresponding to your operative system, or download a development release to try new features. Development release may have more glitches, bugs, and errors.
@@ -27,6 +27,8 @@ The game it's in a very early development stage. Functions that currently work a
 - Basic debug functions
 - Main menu
 - Basic error handling (Most is catch-all error handling)
+
+## This was tested using Python 3.13.13
 
 # Other things that you should be advised of
 I'm a pretty basic Python developer. This is my first project and I feel pretty proud of it. And because of it, code optimization can be bad, or some things may fail constantly.
