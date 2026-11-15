@@ -1,0 +1,1 @@
+registeredVersion=VSC_0.1.4-alpha
