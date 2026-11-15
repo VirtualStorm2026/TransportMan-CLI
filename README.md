@@ -41,6 +41,9 @@ When we finally hit a stable 1.0 version, development builds will be moved to a 
 
 ## This was tested using Python 3.13.13. If stuff breaks with newer Python versions, please let us know submitting an issue and we'll work on it.
 
+# Building
+If you want to build the game from the source code, you can do it following [this](BUILDING.md) guide.
+
 # Other things that you should be advised of
 
 Code optimization can be bad, big quantity of lines not being commented properly, and/or some stuff can break constantly.
