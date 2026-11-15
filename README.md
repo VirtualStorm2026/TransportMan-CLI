@@ -1,8 +1,8 @@
-# TransportMan-CLI
-A Simple, Python-based command line game about managing a public transport business.
+# 🚌 TransportMan-CLI
+A simple, Python-based command line game about managing a public transport business.
 
-# What is this?
-Transport Manager CLI (Name in progress) is a simple Python-based game where you manage your own public transport company. It's a pretty basic game with basic features.
+# ❓ What is this?
+Transport Manager CLI is a simple Python-based game where you manage your own public transport company. Buy your buses, have contracts, manage your money, among other mechanics. It's a pretty basic game with basic features.
 
 # How do I install it?
 ## Dependencies
@@ -11,11 +11,15 @@ To run the game, you will need these in order to play:
 - Python 3 (preferably the latest version. You can get it from here: www.python.org)
 
 ## Installation
-1. Download the latest stable version of the game corresponding to your operative system, or download a development release to try new features. Development release may have more glitches, bugs, and errors.
+1. Download the latest stable version of the game corresponding to your operative system.
 
 2. Extract the .zip or .tar.gz file where you want. It is recommended to extract the game in its own folder.
 
-3. Run the game via executing `python3 transportman.py`. The command may vary depending on your system.
+3. Run the game via executing:
+   ### Windows
+   Run it with `python manager.py`.
+   ### macOS/Linux
+   Run it with `python3 manager.py`.
 
 4. Enjoy!
 
@@ -28,12 +32,20 @@ The game it's in a very early development stage. Functions that currently work a
 - Main menu
 - Basic error handling (Most is catch-all error handling)
 
-## This was tested using Python 3.13.13
+## Compiled executables
+Currently, we are experimenting with creating compiled executables to make the games more accessible for everyone. We are testing Windows executables by now. Coming soon for Linux. Unfortunately, as I don't have any Mac systems, I cannot test macOS builds or even make them, so macOS will not have its own executables.
+
+## Development branch
+When we finally hit a stable 1.0 version, development builds will be moved to a separate branch, to avoid confusion and interference with the stable releases.
+
+## This was tested using Python 3.13.13. If stuff breaks with newer Python versions, please let us know submitting an issue and we'll work on it.
 
 # Other things that you should be advised of
-I'm a pretty basic Python developer. This is my first project and I feel pretty proud of it. And because of it, code optimization can be bad, or some things may fail constantly.
 
-The game is in purpose made of only one Python file to keep it simple and ready to play in any device which supports Python.
+Code optimization can be bad, or some things may fail constantly.
+
+The game itself is in purpose made of only one Python file to keep it simple and ready to play in any device which supports Python.
+However, currently we are testing compiled executables (`.exe`) for Windows systems to make it even more user-friendly and accessible to everyone.
 
 Absolutely nothing of this project is made with AI. That's it. I wanted to add this just in case someone asks.
 
