@@ -13,7 +13,7 @@ To run the game, you will need these in order to play:
 ## Installation
 1. Download the latest stable version of the game corresponding to your operative system.
 
-2. Extract the .zip or .tar.gz file where you want. It is recommended to extract the game in its own folder.
+2. Extract the compressed file where you want. We recommended to extract the game in its own folder.
 
 3. Run the game via executing:
    ### Windows
@@ -30,6 +30,7 @@ The game it's in a very early development stage. Functions that currently work a
 - Save data system
 - Basic debug functions
 - Main menu
+- Some basic mechanics
 - Basic error handling (Most is catch-all error handling)
 
 ## Compiled executables
@@ -42,12 +43,12 @@ When we finally hit a stable 1.0 version, development builds will be moved to a 
 
 # Other things that you should be advised of
 
-Code optimization can be bad, or some things may fail constantly.
+Code optimization can be bad, big quantity of lines not being commented properly, and/or some stuff can break constantly.
 
 The game itself is in purpose made of only one Python file to keep it simple and ready to play in any device which supports Python.
-However, currently we are testing compiled executables (`.exe`) for Windows systems to make it even more user-friendly and accessible to everyone.
+However, currently we are testing compiled executables (`.exe`) for Windows systems to make it even more user-friendly and accessible to everyone. These executables are not tested in deep, so if something goes wrong, please submit an issueand wel'll look into it.
 
-Absolutely nothing of this project is made with AI. That's it. I wanted to add this just in case someone asks.
+In case someone is asking, no, absolutely nothing of this project is made with AI.
 
 # Credits
 VirtualStorm1001: Creator and developer
