@@ -13,7 +13,7 @@ print("Modulos importados correctamente.")
 
 
 # Checks the game version.
-CURRENT_VERSION=("registeredVersion=VSC_0.1.4-alpha")
+CURRENT_VERSION=("registeredVersion=RCX_0.1.5-alpha")
 version_file = Path("version.txt")
 
 # Checks if the license exists.
@@ -54,10 +54,13 @@ all_scores = {}
 
 # Save/Current game data
 money = 0
-buses = {}
 busesS = 0
 busesM = 0
 busesL = 0
+buses=busesL+busesM+busesS
+costoS=2000
+costoM=5000
+costoL=10000
 availableTurns = 99
 diffList = {
     0: "none",
@@ -103,7 +106,7 @@ def clear_screen():
 
 # Load/Save data screen		
 def main_screen():
-    print("Bienvenido a Manager alpha2!")
+    print("Bienvenido a Manager alpha0.1.5!")
     print(" ")
     print("1. Crear partida")
     print("2. Cargar partida")
@@ -112,9 +115,9 @@ def main_screen():
 # Simplification of exit system
 def exitKey(should_exit=True):
     if should_exit==True:
-        print("Presione cualquier tecla para salir...")
+        input("Presione cualquier tecla para salir...")
     else:
-        print("Presione cualquier tecla para continuar...")
+        input("Presione cualquier tecla para continuar...")
      
 time.sleep(1)
     
@@ -367,90 +370,113 @@ while onMain == 1:
 #=================
 # Main game loop
 #=================
-        
-while ingame == 1:
-    
-    with open("save.json", "r", encoding = "utf-8") as loadedSave:
-        
-        loadedSaveData = json.load(loadedSave)
-        user_data = loadedSaveData.get(name)
-        if user_data is None:
-            
-            if isDebugEnabled == True and (initialTurns != diffTurnList.get(seleccion) or currentDiff != diffList.get(seleccion)):
-                
-                print("Se detecto un guardado modificado, contiene datos ilegales o esta corrupto.")
-                time.sleep(2)
-                
-                print("Se detecto que esta en modo desarrollador.")
-                
-                time.sleep(2)
-                
-                loadCorruptSave = str(input("Esta seguro que desea iniciar este guardado? Y/N: "))
-                if loadCorruptSave == "y":
-                    pass
-                    
-                else:
-                    print("No se cargara el guardado. Por favor borra el guardado y/o sobreescribelo con uno original. Error STFE")
-                    
-                    exitKey()
-                    
-                    sys.exit()
-                    
-            print("El archivo esta corrupto o no es un guardado propio. Error SUME0")
-            
-            exitKey()
-            
-            sys.exit()
-            
-        seleccion = user_data[0]
-        
-        availableTurns = user_data[1]
-        
-        initialTurns = user_data[2]
-        
-        currentDiff = user_data[3]
-        
-        if initialTurns == diffTurnList.get(seleccion) and currentDiff == diffList.get(seleccion):
-            pass
-            
-        elif isDebugEnabled == True and (initialTurns != diffTurnList.get(seleccion) or currentDiff != diffList.get(seleccion)):
-            
-            print("Se detecto un guardado modificado, contiene datos ilegales o esta corrupto.")
-            
+
+with open("save.json", "r", encoding="utf-8") as loadedSave:
+
+    loadedSaveData = json.load(loadedSave)
+    user_data = loadedSaveData.get(name)
+    if user_data is None:
+
+        if isDebugEnabled == True and (
+            initialTurns != diffTurnList.get(seleccion)
+            or currentDiff != diffList.get(seleccion)
+        ):
+
+            print(
+                "Se detecto un guardado modificado, contiene datos ilegales o esta corrupto."
+            )
             time.sleep(2)
-            
+
             print("Se detecto que esta en modo desarrollador.")
+
             time.sleep(2)
-            
-            loadCorruptSave = str(input("Esta seguro que desea iniciar este guardado? Y/N: "))
+
+            loadCorruptSave = str(
+                input("Esta seguro que desea iniciar este guardado? Y/N: ")
+            )
             if loadCorruptSave == "y":
                 pass
 
             else:
-                
-                print("No se cargara el guardado. Por favor borra el guardado y/o sobreescribelo con uno original. Error STFE")
-                
+                print(
+                    "No se cargara el guardado. Por favor borra el guardado y/o sobreescribelo con uno original. Error STFE"
+                )
+
                 exitKey()
-                
+
                 sys.exit()
-                
+
+        print(
+            "El archivo esta corrupto o no es un guardado propio. Error SUME0"
+        )
+
+        exitKey()
+
+        sys.exit()
+
+    seleccion = user_data[0]
+
+    availableTurns = user_data[1]
+
+    initialTurns = user_data[2]
+
+    currentDiff = user_data[3]
+
+    if initialTurns == diffTurnList.get(
+        seleccion
+    ) and currentDiff == diffList.get(seleccion):
+        pass
+
+    elif isDebugEnabled == True and (
+        initialTurns != diffTurnList.get(seleccion)
+        or currentDiff != diffList.get(seleccion)
+    ):
+
+        print(
+            "Se detecto un guardado modificado, contiene datos ilegales o esta corrupto."
+        )
+
+        time.sleep(2)
+
+        print("Se detecto que esta en modo desarrollador.")
+        time.sleep(2)
+
+        loadCorruptSave = str(
+            input("Esta seguro que desea iniciar este guardado? Y/N: ")
+        )
+        if loadCorruptSave == "y":
+            pass
+
         else:
-            
-            print("El archivo esta corrupto o modificado. Error SFTE")
-            
+
+            print(
+                "No se cargara el guardado. Por favor borra el guardado y/o sobreescribelo con uno original. Error STFE"
+            )
+
             exitKey()
-            
+
             sys.exit()
-            
-        money = user_data[4]
+
+    else:
+
+        print("El archivo esta corrupto o modificado. Error SFTE")
+
+        exitKey()
+
+        sys.exit()
+
+    money = user_data[4]
+
+    busesS = user_data[5]
+
+    busesM = user_data[6]
+
+    busesL = user_data[7]
+
+    isInfiniteMode = user_data[8]
+
         
-        busesS = user_data[5]
-        
-        busesM = user_data[6]
-        
-        busesL = user_data[7]
-        
-        isInfiniteMode = user_data[8]
+while ingame == 1:
     
     clear_screen()
         
@@ -467,17 +493,11 @@ while ingame == 1:
     
     print(f"Saldo: {money}")
     
-    print(f"Buses pequeños: {busesS}")
-    
-    print(f"Buses medianos: {busesM}")
-    
-    print(f"Buses grandes: {busesL}")
-    
     print("")
     
     print("OPCIONES")
     
-    print("1: Finanzas")
+    print("1. Mi flota")
     
     print("2. Catalogo")
     
@@ -497,17 +517,49 @@ while ingame == 1:
     clear_screen()
     
     if continueOption == 1:
-        if money >= 2000:
-            money = money-2000
-            print("Has gastado 2000 en aire. Gracias por tu compra!")
-            exitKey(should_exit=0)
-        else:
-            print("Te falta dinero!")
-            exitKey(should_exit=0)
+    	# Shows bus information
+    	print(f"Buses totales: {buses}")
+    	print(f"Buses pequeños: {busesS}")
+    	print(f"Buses medianos: {busesM}")
+    	print(f"Buses largos: {busesL}")
+    	
+    	exitKey(should_exit=0)
+    	
     elif continueOption == 2:
-        busesS = busesS+1
-        print("Si conseguiste ese bus legalmente, verdad?")
-        print("Bus pequeño  +1")
+        print("1. Bus pequeño (50 personas): $2000")
+        print("2. Bus mediano (80 personas): $5000")
+        print("3. Bus grande (100 personas): $10000")
+        print("4. Atras")
+        
+        buyMenuOption=int(input("Selecciona una opcion:"))
+        
+        if buyMenuOption==1 and (money==costoS or money>=costoS):
+        	money-=costoS
+        	busesS+=1
+        	print("Has adquirido un bus pequeño!")
+        	exitKey(should_exit=0)
+        elif buyMenuOption==1 and (money<costoS):
+        	print("No tienes suficiente dinero!")
+        	exitKey(should_exit=0)
+        elif buyMenuOption==2 and (money==costoM or money>=costoM):
+        	money-=costoM
+        	busesM+=1
+        	print("Has adquirido un bus mediano!")
+        	exitKey(should_exit=0)
+        elif buyMenuOption==2 and money<costoM:
+        	print("No tienes suficiente dinero!")
+        elif buyMenuOption==3 and (money==costoL or money>=costoL):
+        	money -= costoL
+        	busesL += 1
+        	print("Has adquirido un bus mediano!")
+        	exitKey(should_exit=0)
+        elif buyMenuOption==3 and money<costoL:
+        	print("No tienes suficiente dinero!")
+        elif buyMenuOption==4:
+        	pass
+        else:
+        	pass
+        
 
     elif continueOption == 4:
         clear_screen()
@@ -529,3 +581,6 @@ while ingame == 1:
                 print("Un error ha ocurrido.")
                 exitKey()
                 sys.exit()
+       
+    else:
+    	pass

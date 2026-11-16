@@ -1,1 +1,1 @@
-registeredVersion=VSC_0.1.4-alpha
+registeredVersion=RCX_0.1.5-alpha
