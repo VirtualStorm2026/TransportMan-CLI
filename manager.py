@@ -74,7 +74,7 @@ print("Modulos importados correctamente.")
 
 
 # Checks the game version.
-CURRENT_VERSION=("registeredVersion=RCX_0.1.5-alpha")
+CURRENT_VERSION=("registeredVersion=LBC_0.1.6-alpha")
 version_file = Path("version.txt")
 
 # Gets the LICENSE file.

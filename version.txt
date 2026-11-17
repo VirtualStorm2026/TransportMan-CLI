@@ -1,1 +1,1 @@
-registeredVersion=RCX_0.1.5-alpha
+registeredVersion=LBC_0.1.6-alpha
