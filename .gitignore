@@ -1,0 +1,5 @@
+.venv/
+dist/
+compiled/
+highscores.json
+save.json
