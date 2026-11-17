@@ -8,7 +8,7 @@ Transport Manager CLI is a simple Python-based game where you manage your own pu
 ## Dependencies
 To run the game, you will need these in order to play:
 
-- Python 3 (preferably the latest version. You can get it from [here](www.python.org).)
+- Python 3 (preferably the latest version. You can get it from [here](https://www.python.org).)
 
 ## Installation
 1. Get the latest or stable version from the releases for your operative system.
