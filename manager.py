@@ -6,12 +6,12 @@ try:
     import shutil
     import shlex
     import subprocess
+    import random
     from pathlib import Path
 except ImportError:
     print("Uno o mas modulos no se pudieron cargar correctamente o no fueron encontrados. Error RMIF1")
     input("Presione una tecla para salir...")
     sys.exit()
-
 
 # Open terminal automatically on Linux systems
 def ensure_terminal():
@@ -70,11 +70,8 @@ if __name__ == "__main__":
         os.chdir(os.path.dirname(sys.executable))
 
 
-print("Modulos importados correctamente.")
-
-
 # Checks the game version.
-CURRENT_VERSION=("registeredVersion=LBC_0.1.6-alpha")
+CURRENT_VERSION=("registeredVersion=v0.1.7-alpha")
 version_file = Path("version.txt")
 
 # Gets the LICENSE file.
@@ -107,6 +104,7 @@ else:
 onMain = 0
 ingame = 0
 continueOption = 0
+applyChanges=0
 isInfiniteMode = False
 
 # High Score variables
@@ -123,6 +121,10 @@ buses=busesL+busesM+busesS
 costoS=2000
 costoM=5000
 costoL=10000
+profitS=0
+profitM=0
+profitL=0
+totalProfit=0
 availableTurns = 99
 diffList = {
     0: "none",
@@ -138,6 +140,8 @@ diffTurnList = {
     3: 20,
     4: 0
 }
+versionIndex=1
+storedVersionIndex=0
 saveData = {}
 loadedSaveData = {}
 
@@ -155,6 +159,7 @@ debugNames = {
     "lemmetakealook",
     "businessman"
 }
+
 isDebugEnabled = False
 
 # Loops and functions
@@ -165,10 +170,10 @@ def clear_screen():
         os.system("cls")
     else:
         os.system("clear")
-
+        
 # Load/Save data screen		
 def main_screen():
-    print("Bienvenido a Manager alpha0.1.5!")
+    print("Bienvenido a Transport Manager v0.1.7-alpha!")
     print(" ")
     print("1. Crear partida")
     print("2. Cargar partida")
@@ -180,9 +185,9 @@ def exitKey(should_exit=True):
         input("Presione cualquier tecla para salir...")
     else:
         input("Presione cualquier tecla para continuar...")
-     
-time.sleep(1)
-    
+ 
+clear_screen()
+ 
 print ( "Cargando..." ) 
 
 time.sleep(2)
@@ -207,7 +212,7 @@ try:
 except FileNotFoundError:
     print ( "No se ha encontrado un archivo de puntaje." )
     time.sleep ( 1)
-    makeHS = input ( "Desea crear un archivo de puntaje? Y/N" ).lower ( )
+    makeHS = input ( "Desea crear un archivo de puntaje? Y/N: " ).lower ( )
     if makeHS == "y":
       print ("Guardando... no cierres el programa.")
       time.sleep ( 2)
@@ -234,7 +239,8 @@ doSave = input("Desea guardar su puntaje? Y/N: ").lower()
 # High Score saving logic
 
 if doSave == "y":
-    score = int(input("DESARROLLADOR: Introduzca un puntaje: "))
+    if isDebugEnabled==True:
+    	score=int(input("DEBUG: Type score to save: "))
     print("Guardando...")
     time.sleep(2)
     try:
@@ -295,6 +301,7 @@ while onMain == 1:
                             seleccion = int(input("DESARROLLADOR: Introduzca dificultad (1, 2, 3, 4): "))
                             currentDiff = diffList.get(seleccion)
                             initialTurns = diffTurnList.get(seleccion)
+                            versionIndex=int(input("DESARROLLADOR: Introduzca version de guardado. "))
                             
                         except TypeError:
                             print("Se introdujo un tipo de datos incorrecto.")
@@ -323,6 +330,7 @@ while onMain == 1:
                                     busesM = 0
                                     busesL = 0
                                     isInfiniteMode = False
+                                    versionIndex=1
                                 elif seleccion == 2:
                                     print("Dificultad estandar escogida.")
                                     print("Guardando...")
@@ -335,6 +343,7 @@ while onMain == 1:
                                     busesM = 0
                                     busesL = 0
                                     isInfiniteMode = False
+                                    versionIndex=1
                                 elif seleccion == 3:
                                     print("Dificultad dificil escogida.")
                                     print("Guardando...")
@@ -347,6 +356,7 @@ while onMain == 1:
                                     busesM = 0
                                     busesL = 0
                                     isInfiniteMode = False
+                                    versionIndex=1
                                 elif seleccion == 4:
                                     print("Modo infinito seleccionado.")
                                     print("Guardando...")
@@ -359,12 +369,13 @@ while onMain == 1:
                                     busesM = 0
                                     busesL = 0
                                     isInfiniteMode = True
+                                    versionIndex=1
                             except TypeError:
                                 print("No seleccionaste una opcion valida.")
                                 exitKey(should_exit=0)
 
                     # Stores save data, ready to save in save.json.
-                    saveData[name] = seleccion, availableTurns, initialTurns, currentDiff, money, busesS, busesM, busesL, isInfiniteMode
+                    saveData[name] = seleccion, availableTurns, initialTurns, currentDiff, money, busesS, busesM, busesL, isInfiniteMode, versionIndex
                     json.dump(saveData, saveFile, indent = 4)
 
                     if isDebugEnabled == True:
@@ -536,18 +547,64 @@ with open("save.json", "r", encoding="utf-8") as loadedSave:
     busesL = user_data[7]
 
     isInfiniteMode = user_data[8]
-
+    
+    storedVersionIndex = user_data[9]
+    
+    if storedVersionIndex<versionIndex:
+    	print("Este es un guardado viejo. Tienes que migrarlo para continuar.")
+    	migrateSave=str(input("Migrar guardado? Y/N "))
+    	if migrateSave=="y":
+    		try:
+    		    with open("save.json", "w", encoding = "utf-8") as saveFile:
+    		        if isDebugEnabled==True:
+    		            print("DEBUG: save.json opened.")
+    		        saveData[name] = seleccion, availableTurns, initialTurns, currentDiff, money, busesS, busesM, busesL, isInfiniteMode, versionIndex
+    		        json.dump(saveData, saveFile, indent = 4)
+    		        print("Se ha migrado el guardado. Reinicia el juego.")
+    		        exitKey()
+    		        sys.exit()
+    		except Exception as e:
+    		      print("Ocurrio un error desconocido.")
+    		      exitKey()
+    		      sys.exit()
+    	else:
+    		print("No se puede seguir si no se migra el guardado a una version actual. Error SWNM01")  
+    		exitKey()
+    		sys.exit()
+    elif storedVersionIndex>versionIndex:
+    	print("No se pueden usar guardados mas recientes en versiones antiguas. Error SITR01")
+    	exitKey()
+    	sys.exit()
+    elif storedVersionIndex==versionIndex:
+        pass
         
 while ingame == 1:
     
     clear_screen()
+    
+    if availableTurns==0 or availableTurns<=0:
+    	ingame=0
+    else:
+    	pass
+    
+    buses+=busesS+busesM+busesL
+    
+    profitS=random.randint(700, 1700)*busesS
+    
+    profitM=random.randint(1700, 4600)*busesM
+    
+    profitL=random.randint(3600, 8400)*busesL
+    
+    totalProfit+=profitS+profitM+profitL
+    
+    money+=totalProfit
         
     print("MENU PRINCIPAL")
     
     print(f"DIFICULTAD: {currentDiff}")
     
     if isDebugEnabled==True:
-        print("DEBUG/DESARROLLADOR: ACTIVO")
+        print("DEBUG Mode: active")
     else:
         pass
         
@@ -584,6 +641,7 @@ while ingame == 1:
     	print(f"Buses pequeños: {busesS}")
     	print(f"Buses medianos: {busesM}")
     	print(f"Buses largos: {busesL}")
+    	print(f"Ganancia este turno: {totalProfit}")
     	
     	exitKey(should_exit=0)
     	
@@ -597,6 +655,7 @@ while ingame == 1:
         
         if buyMenuOption==1 and (money==costoS or money>=costoS):
         	money-=costoS
+        	availableTurns-=1
         	busesS+=1
         	print("Has adquirido un bus pequeño!")
         	exitKey(should_exit=0)
@@ -605,6 +664,7 @@ while ingame == 1:
         	exitKey(should_exit=0)
         elif buyMenuOption==2 and (money==costoM or money>=costoM):
         	money-=costoM
+        	availableTurns-=1
         	busesM+=1
         	print("Has adquirido un bus mediano!")
         	exitKey(should_exit=0)
@@ -612,6 +672,7 @@ while ingame == 1:
         	print("No tienes suficiente dinero!")
         elif buyMenuOption==3 and (money==costoL or money>=costoL):
         	money -= costoL
+        	availableTurns-=1
         	busesL += 1
         	print("Has adquirido un bus mediano!")
         	exitKey(should_exit=0)
@@ -633,7 +694,7 @@ while ingame == 1:
                 with open("save.json", "w", encoding = "utf-8") as saveFile:
                     if isDebugEnabled==True:
                         print("DEBUG: save.json opened.")
-                    saveData[name] = seleccion, availableTurns, initialTurns, currentDiff, money, busesS, busesM, busesL, isInfiniteMode
+                    saveData[name] = seleccion, availableTurns, initialTurns, currentDiff, money, busesS, busesM, busesL, isInfiniteMode, versionIndex
                     json.dump(saveData, saveFile, indent = 4)
                     print("Guardado!")
                     exitKey()

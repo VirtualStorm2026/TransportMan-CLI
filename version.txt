@@ -1,1 +1,1 @@
-registeredVersion=LBC_0.1.6-alpha
+registeredVersion=v0.1.7-alpha
