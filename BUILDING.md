@@ -1,4 +1,4 @@
-# BUILDING YOUR OWN EXECUTABLES
+# BUILDING THE SOURCE CODE
 
 Welcome to this quick guide where you can build your own executables. This comes handy if you make any mods that you want to share or compile for your platform.
 
@@ -11,7 +11,7 @@ To compile the game, you will need:
 
 # Getting the source code
 
-# Standard way
+## Standard way
 
 To get the source code, ensure you have installed Git, it's up-to-date and it's inside PATH. You can download it from [here](www.git-scm.com).
 
@@ -22,9 +22,9 @@ Now follow these steps:
 
 If you want to update the source code, go inside the source code folder you just cloned and use `git pull`.
 
-# Beginners
+## Beginners
 
-If you don't know how to use Git, or you will download the source code once, follow these steps:
+If you don't know how to use Git, follow these steps:
 
 1. Go to the project's main page
 2. Click on the green `Code` button and select `Download ZIP`.
@@ -54,7 +54,7 @@ Follow these steps to compile:
 4. Now compile the project for your platform using `pyinstaller --onefile --terminal manager.py`.
 5. Wait until the process finishes and then you'll be done. The result will be in the newly created `dist` folder.
 
-# macOS users
+## macOS
 Unfortunately, for Mac users, we cannot provide a detailed guide for the moment for distinct reasons.
 
 # Troubleshooting
