@@ -1,1 +1,1 @@
-registeredVersion=v0.1.7-alpha
+registeredVersion=v0.1.8-alpha

@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
 
 # Checks the game version.
-CURRENT_VERSION=("registeredVersion=v0.1.7-alpha")
+CURRENT_VERSION=("registeredVersion=v0.1.8-alpha")
 version_file = Path("version.txt")
 
 # Gets the LICENSE file.
@@ -104,7 +104,7 @@ else:
 onMain = 0
 ingame = 0
 continueOption = 0
-applyChanges=0
+applyChanges=False
 isInfiniteMode = False
 
 # High Score variables
@@ -140,7 +140,7 @@ diffTurnList = {
     3: 20,
     4: 0
 }
-versionIndex=1
+versionIndex=2
 storedVersionIndex=0
 saveData = {}
 loadedSaveData = {}
@@ -152,12 +152,12 @@ initialTurns = diffTurnList.get(seleccion)
 
 # Debug stuff
 debugNames = {
-    "rvldev-03",
-    "managerdev",
-    "alchemist64",
-    "insider",
-    "lemmetakealook",
-    "businessman"
+    "rvldev-08",
+    "magician",
+    "anotherUser",
+    "insider018",
+    "checkin",
+    "revealyoursecrets"
 }
 
 isDebugEnabled = False
@@ -173,7 +173,7 @@ def clear_screen():
         
 # Load/Save data screen		
 def main_screen():
-    print("Bienvenido a Transport Manager v0.1.7-alpha!")
+    print("Bienvenido a Transport Manager v0.1.8-alpha!")
     print(" ")
     print("1. Crear partida")
     print("2. Cargar partida")
@@ -199,7 +199,7 @@ name = input("Introduce tu nombre: ")
 
 if name in debugNames:
     isDebugEnabled = True
-    print("DEBUG: Debug activado")
+    print("DEBUG: Debug has been enabled.")
 
 if isDebugEnabled == True:
     print(f"DEBUG: currentDiff value = {currentDiff}")
@@ -414,7 +414,7 @@ while onMain == 1:
                     saveData = json.load(saveFile)
                     print(f"DEBUG: Data found on save.json: {saveData}")
                     print("Guardado cargado!")
-                    exitKey(should_exit=False)
+                    exitKey(should_exit=0)
                     onMain = 0
                     ingame = 1
 
@@ -444,6 +444,8 @@ while onMain == 1:
 # Main game loop
 #=================
 
+clear_screen()
+
 with open("save.json", "r", encoding="utf-8") as loadedSave:
 
     loadedSaveData = json.load(loadedSave)
@@ -458,7 +460,6 @@ with open("save.json", "r", encoding="utf-8") as loadedSave:
             print(
                 "Se detecto un guardado modificado, contiene datos ilegales o esta corrupto."
             )
-            time.sleep(2)
 
             print("Se detecto que esta en modo desarrollador.")
 
@@ -508,8 +509,6 @@ with open("save.json", "r", encoding="utf-8") as loadedSave:
         print(
             "Se detecto un guardado modificado, contiene datos ilegales o esta corrupto."
         )
-
-        time.sleep(2)
 
         print("Se detecto que esta en modo desarrollador.")
         time.sleep(2)
@@ -587,7 +586,7 @@ while ingame == 1:
     else:
     	pass
     
-    buses+=busesS+busesM+busesL
+    buses=busesS+busesM+busesL
     
     profitS=random.randint(700, 1700)*busesS
     
@@ -595,9 +594,13 @@ while ingame == 1:
     
     profitL=random.randint(3600, 8400)*busesL
     
-    totalProfit+=profitS+profitM+profitL
+    totalProfit=profitS+profitM+profitL
     
-    money+=totalProfit
+    if applyChanges==True:
+    	money+=totalProfit
+    	applyChanges=False
+    else:
+    	pass
         
     print("MENU PRINCIPAL")
     
@@ -657,6 +660,7 @@ while ingame == 1:
         	money-=costoS
         	availableTurns-=1
         	busesS+=1
+        	applyChanges=True
         	print("Has adquirido un bus pequeño!")
         	exitKey(should_exit=0)
         elif buyMenuOption==1 and (money<costoS):
@@ -666,6 +670,7 @@ while ingame == 1:
         	money-=costoM
         	availableTurns-=1
         	busesM+=1
+        	applyChanges=True
         	print("Has adquirido un bus mediano!")
         	exitKey(should_exit=0)
         elif buyMenuOption==2 and money<costoM:
@@ -674,6 +679,7 @@ while ingame == 1:
         	money -= costoL
         	availableTurns-=1
         	busesL += 1
+        	applyChanges=True
         	print("Has adquirido un bus mediano!")
         	exitKey(should_exit=0)
         elif buyMenuOption==3 and money<costoL:
