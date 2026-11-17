@@ -1,6 +1,6 @@
 # Building your executable
 
-Welcome to this simple guide where you can build your own executables. This comes handy if you make any mods that you want to share or compile for your platform.
+Welcome to this quick guide where you can build your own executables. This comes handy if you make any mods that you want to share or compile for your platform.
 
 ## By now, we only provide instructions for Windows building. We will provide building steps for macOS and Linux soon.
 
@@ -24,13 +24,14 @@ If you want to update the source code, go inside the source code folder you just
 
 # Beginners
 
-To get the source code quickly, follow these steps:
+If you don't know how to use Git, or you will download the source code once, follow these steps:
 
 1. Go to the project's main page
 2. Click on the green `Code` button and select `Download ZIP`.
 3. Extract the content in a folder, and proceed with the compiling steps below.
 
 If you want to update the source code, redownload the source code following the steps above.
+This is not recommended for long-term use. We recommend instead using Git.
 
 # Compiling the code
 ## Windows

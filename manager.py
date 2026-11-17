@@ -3,11 +3,72 @@ try:
     import os
     import json
     import time
+    import shutil
+    import shlex
+    import subprocess
     from pathlib import Path
 except ImportError:
     print("Uno o mas modulos no se pudieron cargar correctamente o no fueron encontrados. Error RMIF1")
     input("Presione una tecla para salir...")
     sys.exit()
+
+
+# Open terminal automatically on Linux systems
+def ensure_terminal():
+    # Already inside an interactive terminal
+    if sys.stdout and sys.stdout.isatty():
+        return
+
+    # Prevent infinite respawn loops
+    if os.environ.get("APP_TERMINAL_SPAWNED") == "1":
+        return
+
+    # Build a clean environment so PyInstaller creates a fresh /tmp/_MEI folder
+    env = os.environ.copy()
+    env["APP_TERMINAL_SPAWNED"] = "1"
+
+    if getattr(sys, "frozen", False):
+        if "LD_LIBRARY_PATH_ORIG" in env:
+            env["LD_LIBRARY_PATH"] = env["LD_LIBRARY_PATH_ORIG"]
+        else:
+            env.pop("LD_LIBRARY_PATH", None)
+
+        # Remove PyInstaller bootloader keys that point to the parent's temp folder
+        for key in list(env.keys()):
+            if key.startswith(("_MEI", "PYI_", "_PYI")):
+                env.pop(key, None)
+
+    executable = sys.executable if getattr(sys, "frozen", False) else os.path.abspath(__file__)
+    app_dir = os.path.dirname(executable)
+
+    # Change into the binary's directory before running so version.txt and LICENSE are found
+    cmd_str = f"cd {shlex.quote(app_dir)} && " + " ".join(
+        shlex.quote(arg) for arg in [executable] + sys.argv[1:]
+    )
+    shell_cmd = f"{cmd_str}; echo ''; read -p 'Press Enter to close...'"
+
+    terminals = [
+        ["x-terminal-emulator", "-e", "bash", "-c", shell_cmd],
+        ["gnome-terminal", "--", "bash", "-c", shell_cmd],
+        ["konsole", "-e", "bash", "-c", shell_cmd],
+        ["xfce4-terminal", "-x", "bash", "-c", shell_cmd],
+        ["alacritty", "-e", "bash", "-c", shell_cmd],
+        ["kitty", "bash", "-c", shell_cmd],
+        ["xterm", "-e", "bash", "-c", shell_cmd],
+    ]
+
+    for term_cmd in terminals:
+        if shutil.which(term_cmd[0]):
+            subprocess.Popen(term_cmd, env=env, cwd=app_dir)
+            sys.exit(0)
+
+if __name__ == "__main__":
+    ensure_terminal()
+
+    # Ensure working directory is always the folder next to the binary
+    if getattr(sys, "frozen", False):
+        os.chdir(os.path.dirname(sys.executable))
+
 
 print("Modulos importados correctamente.")
 
@@ -16,9 +77,10 @@ print("Modulos importados correctamente.")
 CURRENT_VERSION=("registeredVersion=RCX_0.1.5-alpha")
 version_file = Path("version.txt")
 
-# Checks if the license exists.
+# Gets the LICENSE file.
 license_file = Path("LICENSE")
 
+# Checks if everything is OK in order to run.
 if version_file.exists():
     file_version = version_file.read_text(encoding="utf-8").strip("=")
     if file_version==CURRENT_VERSION:
