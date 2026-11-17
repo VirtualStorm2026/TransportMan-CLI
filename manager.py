@@ -615,6 +615,8 @@ while ingame == 1:
     
     print(f"Saldo: {money}")
     
+    print(f"Ganancia hoy: {totalProfit}")
+    
     print("")
     
     print("OPCIONES")
