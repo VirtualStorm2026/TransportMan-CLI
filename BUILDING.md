@@ -1,8 +1,8 @@
-# BUILDING THE SOURCE CODE
+# 🔨 BUILDING THE SOURCE CODE
 
 Welcome to this quick guide where you can build your own executables. This comes handy if you make any mods that you want to share or compile for your platform.
 
-## By now, we only provide instructions for Windows building. We will provide building steps for macOS and Linux soon.
+**By now, we only provide instructions for Windows and Linux building. macOS will not have an official guide.**
 
 # Dependencies
 To compile the game, you will need:
@@ -30,7 +30,7 @@ If you don't know how to use Git, follow these steps:
 2. Click on the green `Code` button and select `Download ZIP`.
 3. Extract the content in a folder, and proceed with the compiling steps below.
 
-If you want to update the source code, redownload the source code following the steps above.
+If you want to update the source code, redownload the source code and replace the old files with the new ones.
 This is not recommended for long-term use. We recommend instead using the standard method.
 
 # Compiling the code
@@ -41,7 +41,7 @@ Follow these steps to compile:
 2. Open a command prompt window and create your virtual environment using `python -m venv .venv`.
 3. Initialize the virtual environment using `.venv\Scripts\activate.bat`.
 4. Install `pyinstaller` using `pip install -U pyinstaller`.
-5. Now compile the project for your platform using `pyinstaller --onefile manager.py`.
+5. Now compile the project using `pyinstaller --onefile manager.py`.
 5. Wait until the process finishes and then you'll be done. The result will be in the newly created `dist` folder.
 
 ## Linux
@@ -51,11 +51,11 @@ Follow these steps to compile:
 2. Open a terminal inside that folder and create your virtual environment using `python3 -m venv .venv`.
 3. Initialize your virtual environment using `source .venv/bin/activate`.
 4. Install `pyinstaller` using `pip install -U pyinstaller`.
-4. Now compile the project for your platform using `pyinstaller --onefile --terminal manager.py`.
+4. Now compile the project using `pyinstaller --onefile --terminal manager.py`.
 5. Wait until the process finishes and then you'll be done. The result will be in the newly created `dist` folder.
 
 ## macOS
-Unfortunately, for Mac users, we cannot provide a detailed guide for the moment for distinct reasons.
+Unfortunately, for Mac users, we cannot provide a detailed guide for the moment.
 
 # Troubleshooting
 This is a basic troubleshooting guide which covers some common errors that could happen.
