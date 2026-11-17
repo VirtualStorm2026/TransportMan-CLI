@@ -8,14 +8,14 @@ Transport Manager CLI is a simple Python-based game where you manage your own pu
 ## Dependencies
 To run the game, you will need these in order to play:
 
-- Python 3 (preferably the latest version. You can get it from [here](www.python.org)
+- Python 3 (preferably the latest version. You can get it from [here](www.python.org).)
 
 ## Installation
-1. Download the latest stable version of the game corresponding to your operative system.
+1. Get the latest or stable version from the releases for your operative system.
 
-2. Extract the compressed file where you want. We recommended to extract the game in its own folder.
+2. Extract the compressed file inside it's own folder.
 
-3. Run the game via executing:
+3. Run the game:
    ### Windows
    Open `manager.exe`.
    ### Linux
@@ -23,8 +23,8 @@ To run the game, you will need these in order to play:
 
 4. Enjoy!
 
-# ⚠️ Experimental Stage
-**The game it's in a very early development stage. Functions that currently work are:**
+# ⚠️ Development Stage
+**The game it's in a very early development stage.** Functions that currently work are:
 - High Score system
 - Save data system
 - Basic debug functions
@@ -41,15 +41,17 @@ Currently, we are experimenting with compiled executables to make the game more 
 When the project reaches a stable 1.0 version, development builds will be moved to a separate branch, to avoid confusion and interference with the stable releases. However, pre-release versions will be kept in the main branch.
 
 # Building
-We now offer a simple guide for Windows and Linux to build the game from the source code. You can do it following [this](BUILDING.md) guide.
+We now offer a simple guide for Windows and Linux to build the game from the source code. You can do so following [this](BUILDING.md) guide.
 
 # Notes
 
 Code optimization can be bad, big quantity of lines not being commented properly, and/or some stuff can break constantly.
 
-Currently, we are testing compiled Windows executables (`.exe`) and Linux binaries to make the project more user-friendly and accessible to everyone. These executables are not tested in deep, so if something goes wrong, please submit an issue and we'll look into it.
+Currently, we are testing compiled Windows executables (`.exe`) and Linux binaries. These executables are not tested in deep, so if something goes wrong, please submit an issue and we'll look into it.
 
-**Starting 0.1.8, Python versions will be removed from the releases.**
+**Starting 0.1.8, Python versions will be no longer available from the releases.**
+
+There can be constant changes in the source code due to the development stage. Please be sure to have the code up-to-date if building or running the game from the source code.
 
 In case someone is asking, no, absolutely nothing of this project is made with AI.
 
