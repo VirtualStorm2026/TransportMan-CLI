@@ -7,7 +7,7 @@ Welcome to this quick guide where you can build your own executables. This comes
 # Dependencies
 To compile the game, you will need:
 - Python 3 in its latest version
-- Pyinstaller (Install using pip install -U pyinstaller)
+- Pyinstaller
 
 # Getting the source code
 
@@ -31,27 +31,40 @@ If you don't know how to use Git, or you will download the source code once, fol
 3. Extract the content in a folder, and proceed with the compiling steps below.
 
 If you want to update the source code, redownload the source code following the steps above.
-This is not recommended for long-term use. We recommend instead using Git.
+This is not recommended for long-term use. We recommend instead using the standard method.
 
 # Compiling the code
 ## Windows
 
 Follow these steps to compile:
-1. Go inside the folder of the source code.
-2. Open a terminal and type `pyinstaller manager.py`.
-(Optional): Add `--icon=path\to\icon.ico` to the command if you want to have a custom icon.
-3. Wait until the process finishes.
-4. You will have your compiled file inside the newly created `dist` folder.
+1. Go inside the folder of the cloned repository.
+2. Open a command prompt window and create your virtual environment using `python -m venv .venv`.
+3. Initialize the virtual environment using `.venv\Scripts\activate.bat`.
+4. Install `pyinstaller` using `pip install -U pyinstaller`.
+5. Now compile the project for your platform using `pyinstaller --onefile manager.py`.
+5. Wait until the process finishes and then you'll be done. The result will be in the newly created `dist` folder.
 
-# macOS and Linux users
+## Linux
+
+Follow these steps to compile:
+1. Go inside the folder of the cloned repository.
+2. Open a terminal inside that folder and create your virtual environment using `python3 -m venv .venv".
+3. Initialize your virtual environment using `source .venv/bin/activate".
+4. Install `pyinstaller` using `pip install -U pyinstaller`.
+4. Now compile the project for your platform using `pyinstaller --onefile --terminal manager.py`.
+5. Wait until the process finishes and then you'll be done. The result will be in the newly created `dist` folder.
+
+# macOS users
 Unfortunately, for Mac users, we cannot provide a detailed guide in how to compile the game. This is because we don't have a Mac to test with, and we can't be sure how much the process changes.
-For Linux users, we'll update this guide soon to cover Linux as we find out how to compile the game on it.
 
 # Troubleshooting
 This is a basic troubleshooting guide which covers some common errors that could happen.
 
 ## pyinstaller: command not found
-This means you haven't installed Pyinstaller yet. Do so by running `pip install -U pyinstaller`.
+This means you haven't installed Pyinstaller yet. Do so by running `pip install -U pyinstaller` inside your virtual environment.
 
 ## pip: command not found
 This means you haven't either installed Python or your installation is broken. Download a fresh copy from here: www.python.org and update `pip` running `python -m pip install --upgrade pip` if you are on Windows or `python3 -m pip install --upgrade pip` if you are on macOS/Linux.
+
+## externally-managed-environment
+This problem mostly happens in Linux and macOS systems when trying to install dependencies via pip. This happens because you have not created and/or initialized your virtual environment. Follow the steps above to create and initialize your virtual environment.
