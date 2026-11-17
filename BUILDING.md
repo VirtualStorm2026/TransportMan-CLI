@@ -1,4 +1,4 @@
-# Building your executable
+# BUILDING YOUR OWN EXECUTABLES
 
 Welcome to this quick guide where you can build your own executables. This comes handy if you make any mods that you want to share or compile for your platform.
 
@@ -13,7 +13,7 @@ To compile the game, you will need:
 
 # Standard way
 
-To get the source code, ensure you have installed Git, it's up-to-date and it's inside PATH. You can download it from here: www.git-scm.com
+To get the source code, ensure you have installed Git, it's up-to-date and it's inside PATH. You can download it from [here](www.git-scm.com).
 
 Now follow these steps:
 
@@ -48,14 +48,14 @@ Follow these steps to compile:
 
 Follow these steps to compile:
 1. Go inside the folder of the cloned repository.
-2. Open a terminal inside that folder and create your virtual environment using `python3 -m venv .venv".
-3. Initialize your virtual environment using `source .venv/bin/activate".
+2. Open a terminal inside that folder and create your virtual environment using `python3 -m venv .venv`.
+3. Initialize your virtual environment using `source .venv/bin/activate`.
 4. Install `pyinstaller` using `pip install -U pyinstaller`.
 4. Now compile the project for your platform using `pyinstaller --onefile --terminal manager.py`.
 5. Wait until the process finishes and then you'll be done. The result will be in the newly created `dist` folder.
 
 # macOS users
-Unfortunately, for Mac users, we cannot provide a detailed guide in how to compile the game. This is because we don't have a Mac to test with, and we can't be sure how much the process changes.
+Unfortunately, for Mac users, we cannot provide a detailed guide for the moment for distinct reasons.
 
 # Troubleshooting
 This is a basic troubleshooting guide which covers some common errors that could happen.
@@ -67,4 +67,4 @@ This means you haven't installed Pyinstaller yet. Do so by running `pip install 
 This means you haven't either installed Python or your installation is broken. Download a fresh copy from here: www.python.org and update `pip` running `python -m pip install --upgrade pip` if you are on Windows or `python3 -m pip install --upgrade pip` if you are on macOS/Linux.
 
 ## externally-managed-environment
-This problem mostly happens in Linux and macOS systems when trying to install dependencies via pip. This happens because you have not created and/or initialized your virtual environment. Follow the steps above to create and initialize your virtual environment.
+This problem mostly happens in Linux and macOS systems when trying to install dependencies via pip. This occurs because you have not created and/or initialized your virtual environment. Follow the steps above to create and initialize your virtual environment.
