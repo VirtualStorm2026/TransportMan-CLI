@@ -1,6 +1,7 @@
 .venv/
 dist/
 compiled/
+testing/
 build/
 highscores.json
 save.json
