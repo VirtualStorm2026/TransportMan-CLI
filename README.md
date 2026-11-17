@@ -2,29 +2,29 @@
 A simple, Python-based command line game about managing a public transport business.
 
 # ❓ What is this?
-Transport Manager CLI is a simple Python-based game where you manage your own public transport company. Buy your buses, have contracts, manage your money, among other mechanics. It's a pretty basic game with basic features.
+Transport Manager CLI is a simple Python-based game where you manage your own public transport company. Buy, rent and sell buses, manage your money, among other mechanics. It's a pretty basic game with basic features.
 
 # How do I install it?
 ## Dependencies
 To run the game, you will need these in order to play:
 
-- Python 3 (preferably the latest version. You can get it from here: www.python.org)
+- Python 3 (preferably the latest version. You can get it from [here](https://www.python.org).)
 
 ## Installation
-1. Download the latest stable version of the game corresponding to your operative system.
+1. Get the latest or stable version from the releases for your operative system.
 
-2. Extract the compressed file where you want. We recommended to extract the game in its own folder.
+2. Extract the compressed file inside it's own folder.
 
-3. Run the game via executing:
+3. Run the game:
    ### Windows
-   Run it with `python manager.py`.
-   ### macOS/Linux
-   Run it with `python3 manager.py`.
+   Open `manager.exe`.
+   ### Linux
+   Open `manager`, or, if available, use the `.desktop` file.
 
 4. Enjoy!
 
-# ⚠️ Experimental Stage
-**The game it's in a very early development stage. Functions that currently work are:**
+# ⚠️ Development Stage
+**The game it's in a very early development stage.** Functions that currently work are:
 - High Score system
 - Save data system
 - Basic debug functions
@@ -35,22 +35,23 @@ To run the game, you will need these in order to play:
 # Additional information
 
 ## Compiled executables
-Currently, we are experimenting with compiled executables to make the game more accessible for everyone. We are testing Windows executables by now. Coming soon for Linux. Unfortunately, as I don't have any Mac systems, I cannot test macOS builds or even make them, so macOS will not have its own (official) executables.
+Currently, we are experimenting with compiled executables to make the game more accessible for everyone. We are testing Windows executables and Linux binaries. macOS will not have official builds.
 
 ## Development branch
 When the project reaches a stable 1.0 version, development builds will be moved to a separate branch, to avoid confusion and interference with the stable releases. However, pre-release versions will be kept in the main branch.
 
 # Building
-If you want to build the game from the source code, you can do it following [this](BUILDING.md) guide.
-
-**This was tested using Python 3.13.13. If stuff breaks with newer Python versions, please let us know submitting an issue and we'll work on it.**
+We now offer a simple guide for Windows and Linux to build the game from the source code. You can do so following [this](BUILDING.md) guide.
 
 # Notes
 
 Code optimization can be bad, big quantity of lines not being commented properly, and/or some stuff can break constantly.
 
-The game itself is in purpose made of only one Python file to keep it simple and ready to play in any device which supports Python.
-However, currently we are testing compiled executables (`.exe`) for Windows systems to make it even more user-friendly and accessible to everyone. These executables are not tested in deep, so if something goes wrong, please submit an issue and we'll look into it.
+Currently, we are testing compiled Windows executables (`.exe`) and Linux binaries. These executables are not tested in deep, so if something goes wrong, please submit an issue and we'll look into it.
+
+**Starting 0.1.8, Python versions will be no longer available from the releases.**
+
+There can be constant changes in the source code due to the development stage. Please be sure to have the code up-to-date if building or running the game from the source code.
 
 In case someone is asking, no, absolutely nothing of this project is made with AI.
 
